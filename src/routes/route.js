@@ -1,10 +1,14 @@
 const express = require('express');
 const abc = require('../introduction/intro')
+const ass1 = require('../logger/logger')
+const ass2 = require('../util/helper')
+const ass3 = require('../validator/formatter')
 const router = express.Router();
 
 router.get('/test-me', function (req, res) {
-    console.log('My batch is', abc.name)
-    abc.printName()
+    ass1.Greeting()
+    ass2.printDate()
+    ass3.fun()
     res.send('My second ever api!')
 });
 
