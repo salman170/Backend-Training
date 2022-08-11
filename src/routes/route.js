@@ -53,8 +53,8 @@ router.post('/players/:playerName/bookings/:bookingId', function (req, res) {
             if (players[i].bookingNumber ){
                 return res.send({data :"Already alloted slot"})}
             else {
-                players[i].body = players[i]
-                 return res.send({ data: players, status: true })
+                 players[i] = {...players[i], ...body}
+                 return res.send(players[i])
             }
         }
     }
