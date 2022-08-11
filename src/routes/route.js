@@ -61,20 +61,6 @@ router.post('/players/:playerName/bookings/:bookingId', function (req, res) {
     return res.send({data :"something relevant about player not being found."})
 }
 )
-// if (players[i].name == element.playerName) {
-//     players[i] = players[i].body
-//     return res.send({ data: players, status: true })
-//     // return res.send({data :"something relevant about player not being found."})
-// }
-// else 
-// }
-// else if (players[i].name == element.playerName && players[i].bookingNumber == false ){
-//     players[i] = players[i].body
-//     return res.send({ data: players, status: true })
-// }
-
-
-
 
  const persons = [
     {
@@ -125,10 +111,6 @@ router.get('/students/:name', function (req, res) {
 router.get("/plutonium", function (req, res) {
     res.send("hi there")
 })
-
-
-
-
 
 
 module.exports = router;
