@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const UserModel= require("../models/userModel.js")
+// const UserModel= require("../models/userModel.js")
 const UserController= require("../controllers/userController")
 
 router.get("/test-me", function (req, res) {
@@ -10,5 +10,9 @@ router.get("/test-me", function (req, res) {
 router.post("/createUser", UserController.createUser  )
 
 router.get("/getUsersData", UserController.getUsersData)
+
+router.post("/entryBooks", UserController.entryBooks  )
+
+router.get("/getBooksData", UserController.getBooksData)
 
 module.exports = router;

@@ -25,7 +25,14 @@ const userSchema = new mongoose.Schema( {
 
 module.exports = mongoose.model('User', userSchema) //users
 
+const bookSchema = new mongoose.Schema({
+    bookName: "string",
+    authorName : "string",
+    Category : "string",
+    Year : "Number"
+},{timestamps: true});
 
+module.exports = mongoose.model('Book', bookSchema )
 
 // String, Number
 // Boolean, Object/json, array
