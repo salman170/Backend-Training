@@ -1,7 +1,7 @@
-const { count } = require("console")
-const BookModel = require("../models/bookModel")
 
-const createBook = async function (req, res) {
+const BookModel = require("../models/booksModel")
+
+const createBook = async function(req, res){
     let data = req.body
     let savedData = await BookModel.create(data)
     res.send({ msg: savedData })
@@ -20,17 +20,19 @@ const getBooksInYear = async function (req, res) {
 }
 const getParticularBooks = async function (req, res) {
     let input = req.body
-    let allBooks = await BookModel.find({ year: { $eq: year } })
+    
+    // let allBooks = await BookModel.find(input)
+    let allBooks = await BookModel.find(input)
     res.send({ msg: allBooks })
 
 }
 const getXINRBooks = async function (req, res) {
-    let allBooks = await BookModel.find({ indianPrice: { $in: ["100INR", "200INR", "500INR"] } })
+    let allBooks = await BookModel.find({ "prices.indianPrice": { $in: [ "100INR" , "200INR" , "500INR"] }} )
     res.send({ msg: allBooks })
 
 }
 const getRandomBooks = async function (req, res) {
-    let allBooks = await BookModel.find({ $or: [{ istockAvailable: true }, { pages: { $gt:  50 }}] })
+    let allBooks = await BookModel.find({ $eq: [{ stockAvailable: true }, { pages: { $gt:  500 }}] })
     res.send({ msg: allBooks })
 
 }

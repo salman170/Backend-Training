@@ -21,18 +21,4 @@ const bookSchema = new mongoose.Schema({
 
 
 
-module.exports = mongoose.model('BookAssignment', bookSchema) //users
-
-//Validation:
-//require:true
-//unique
-// default
-
-//String
-//Number
-//Date
-//Boolean
-// Arrays
-// Object
-// ObjectId
-// Buffer - not cover
+module.exports = mongoose.model('BookAssignment', bookSchema)
