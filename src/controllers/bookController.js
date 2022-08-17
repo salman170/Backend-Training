@@ -8,7 +8,7 @@ const createBook = async function(req, res){
 }
 
 const bookList = async function (req, res) {
-    let allBooks = await BookModel.find().select({ bookName: 1, authorName: 1, _id: 0 })
+    let allBooks = await BookModel.find().select({ bookName: 1, "tags.authorName": 1, _id: 0 })
     res.send({ msg: allBooks })
 
 }
@@ -32,7 +32,7 @@ const getXINRBooks = async function (req, res) {
 
 }
 const getRandomBooks = async function (req, res) {
-    let allBooks = await BookModel.find({ $eq: [{ stockAvailable: true }, { pages: { $gt:  500 }}] })
+    let allBooks = await BookModel.find({ $or: [{"tags.totalPages":{$gt: 500}},{ "tags.stockAvailable": true }] })
     res.send({ msg: allBooks })
 
 }
