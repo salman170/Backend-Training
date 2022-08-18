@@ -18,13 +18,13 @@ const createAuthor = async function (req, res) {
 
 // List out the books written by "Chetan Bhagat" ( this will need 2 DB queries one after another- first query will find the author_id for "Chetan Bhagat”. Then next query will get the list of books with that author_id )
 const findBook = async function (req,res){
-    // let findAuthor = await AuthorModel.find({author_name : "Chetan Bhagat"})
-    // let findBook = await BookModel.find({author_id: {$eq : findAuthor[0].author_id}})
-    // res.send({msg : findBook})
+    let findAuthor = await AuthorModel.find({author_name : "Chetan Bhagat"})
+    let findBook = await BookModel.find({author_id: {$eq : findAuthor[0].author_id}})
+    res.send({msg : findBook})
 
-    let allBooksByCB = await AuthorModel.findOne({author_name: "Chetan Bhagat"}).select({ author_id:1, _id: 0})
-    let booksByAuId = await BookModel.find(allBooksByCB)
-    res.send({ msg: booksByAuId })
+    // let allBooksByCB = await AuthorModel.findOne({author_name: "Chetan Bhagat"}).select({ author_id:1, _id: 0})
+    // let booksByAuId = await BookModel.find(allBooksByCB)
+    // res.send({ msg: booksByAuId })
 }
 
 
@@ -36,7 +36,7 @@ let UpdateBook = async function (req,res){
     let booksByAuId = await BookModel.findOneAndUpdate(
         {authorBook : {$eq: author}},
         {$set: {price: 50}},
-        {new : true}
+        {new : true, }
         )
     res.send({ msg: booksByAuId })
 }
