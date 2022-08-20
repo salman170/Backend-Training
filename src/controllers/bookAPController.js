@@ -43,7 +43,7 @@ const updateBook = async function (req, res) {
     res.send({ msg: updateBook })
 
 
-    // b) For the books written by authors having a rating greater than 3.5, update the books price by 10 (For eg if old price for such a book is 50, new will be 60) 
+ // b) For the books written by authors having a rating greater than 3.5, update the books price by 10 (For eg if old price for such a book is 50, new will be 60) 
     // let authorRating = await authorModel.find({rating : {$gt : 3.5}}).select({_id : 1})
     // let updatedPrice = await bookModel.updateMany(
     //     { author : authorRating},
@@ -61,11 +61,7 @@ const getBooksWithAuthorDetails = async function (req, res) {
 
 }
 
-// let updatePrice = await bookModel.updateMany(
-//     {"author.ratings ":{$gt: 3.5 }},
-//     {$inc:{price : 10}},
-//     {new : true, upsert:true }
-// ).populate('author')
+
 
 module.exports.createBook = createBook
 module.exports.getBooksWithAuthorDetails = getBooksWithAuthorDetails
