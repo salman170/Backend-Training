@@ -15,16 +15,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //         next();
 //   }
 //   );
-app.use (
+app.use(
     function (req, res, next) {
-    
- let timeAndYear = moment().format("YYYY-MM-DD  hh:mm:ss ")
- 
-    // console.log(req.url);             // relative path with query|search params
-    console.log(timeAndYear+" , "+req.ip +"  , " +req.url)                   
+
+        let timeAndYear = moment().format("YYYY-MM-DD  hh:mm:ss ")
+
+        // console.log(req.url);             // relative path with query|search params
+        console.log(timeAndYear + " , " + req.ip + "  , " + req.url)
         next()
-  }
-  );
+    }
+);
 
 app.use('/', route);
 
