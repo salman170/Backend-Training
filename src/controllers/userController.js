@@ -10,7 +10,7 @@ const createUser = async function (abcd, xyz) {
   //the second parameter is always the response
   let data = abcd.body;
   let savedData = await userModel.create(data);
-  console.log(abcd.newAtribute);
+  // console.log(abcd.newAtribute);
   xyz.send({ msg: savedData });
 };
 
@@ -48,7 +48,8 @@ const getUserData = async function (req, res) {
   if (!token) token = req.headers["x-auth-token"];
 
   //If no token is present in the request header return error. This means the user is not logged in.
-  if (!token) return res.send({ status: false, msg: "token must be present" });
+  if (!token) 
+  return res.send({ status: false, msg: "token must be present" });
 
   console.log(token);
 
