@@ -11,8 +11,8 @@ const authenticate = async function ( req, res, next) {
         return res.send("No such user exists");
     }
     req.user = user
-    let token = req.headers["x-Auth-token"];
-    if (!token) token = req.headers["x-auth-token"];
+  
+    let token = req.headers["x-auth-token"];
 
     //If no token is present in the request header return error. This means the user is not logged in.
     if (!token) {
@@ -28,8 +28,8 @@ const authenticate = async function ( req, res, next) {
 const authorise = function (req, res, next) {
     // comapre the logged in user's id and the id in request
     let userId = req.params.userId;
-    let token = req.headers["x-Auth-token"];
-    if (!token) token = req.headers["x-auth-token"];
+    
+    let token = req.headers["x-auth-token"];
 
         let decodedToken = jasonwebtoken.verify(token, "functionup-plutonium-very-very-secret-key");
         if (!decodedToken)
