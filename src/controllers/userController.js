@@ -54,40 +54,43 @@ const getUserData = async function (req, res) {
     res.status(200).send({ status: true, data: userDetails });
     // Note: Try to see what happens if we change the secret while decoding the token}
   }
-  catch{
+  catch (err) {
     console.log("This is the error :", err.message)
     res.status(500).send({ msg: "Error", error: err.message })
-  }}
+  }
+}
   ;
 
 
-  const updateUser = async function (req, res) {
-    try {
-      let userId = req.params.userId;
-      let userData = req.body;
-      let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData, { new: true });
-      res.status(201).send({ status: true, data: updatedUser });
-    } catch {
-      console.log("This is the error :", err.message)
+const updateUser = async function (req, res) {
+  try {
+    let userId = req.params.userId;
+    let userData = req.body;
+    let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData, { new: true });
+    res.status(201).send({ status: true, data: updatedUser });
+  } catch (err) {
+    console.log("This is the error :", err.message)
     res.status(500).send({ msg: "Error", error: err.message })
-    }
-    
-  };
+  }
+
+};
 
 
-  const deleteUser = async function (req, res) {
-   try{ let userId = req.params.userId;
+const deleteUser = async function (req, res) {
+  try {
+    let userId = req.params.userId;
     let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, { $set: { isDeleted: true } }, { new: true });
     res.status(201).send({ status: true, data: updatedUser });
-  } catch {
+  } catch (err) {
     console.log("This is the error :", err.message)
-  res.status(500).send({ msg: "Error", error: err.message })
+    res.status(500).send({ msg: "Error", error: err.message })
   }
-  
-  };
 
-  const postMessage = async function (req, res) {
-    try {let message = req.body.message
+};
+
+const postMessage = async function (req, res) {
+  try {
+    let message = req.body.message
     let user = req.user
     let updatedPosts = user.posts
     //add the message to user's posts
@@ -95,19 +98,20 @@ const getUserData = async function (req, res) {
     let updatedUser = await userModel.findOneAndUpdate({ _id: user._id }, { posts: updatedPosts }, { new: true })
 
     //return the updated user document
-    return res.status(201).send({ status: true, data: updatedUser })}
-    catch {
-      console.log("This is the error :", err.message)
-  res.status(500).send({ msg: "Error", error: err.message })
-    }
+    return res.status(201).send({ status: true, data: updatedUser })
   }
+  catch (err) {
+    console.log("This is the error :", err.message)
+    res.status(500).send({ msg: "Error", error: err.message })
+  }
+}
 
 
 
 
-  module.exports.createUser = createUser;
-  module.exports.getUserData = getUserData;
-  module.exports.updateUser = updateUser;
-  module.exports.loginUser = loginUser;
-  module.exports.deleteUser = deleteUser;
-  module.exports.postMessage = postMessage
+module.exports.createUser = createUser;
+module.exports.getUserData = getUserData;
+module.exports.updateUser = updateUser;
+module.exports.loginUser = loginUser;
+module.exports.deleteUser = deleteUser;
+module.exports.postMessage = postMessage
